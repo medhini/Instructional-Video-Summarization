@@ -56,6 +56,9 @@ parser.add_argument(
     type=str,
     help="folder for result videos",
 )
+parser.add_argument(
+    "--log_videos", dest="log_videos", action="store_true", help="Logs videos"
+)
 
 # Model related arguments
 parser.add_argument(
@@ -72,10 +75,6 @@ parser.add_argument(
     type=float,
     help="cut off threshold",
 )
-parser.add_argument(
-    "--log_videos", dest="log_videos", action="store_true", help="Logs videos"
-)
-
 
 def cluster_vid(args):
     all_video_summaries = {}
