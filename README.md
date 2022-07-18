@@ -13,11 +13,18 @@ If you find our repo useful in your research, please use the following BibTeX en
 }
 ```
 
-# Environment Setup
+## Environment Setup
 
-# Dataset
+Create the conda environment from the yaml file and activate the environment,
 
-## WikiHow Summaries
+```
+conda env create -f vsum.yml
+conda activate vsum
+```
+
+## Dataset
+
+### WikiHow Summaries
 
 First, extract the files in datasets/how_to_steps.tar.gz
 
@@ -32,9 +39,9 @@ cd Instructional-Video-Summarization
 python wikihow_video_download.py
 ```
 
-# Pseudo Ground-Truth Summary Generation
+## Pseudo Ground-Truth Summary Generation
 
-# IV-Sum Training and Evaluation
+## IV-Sum Training and Evaluation
 
 
 
