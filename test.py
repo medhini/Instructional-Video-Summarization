@@ -26,35 +26,35 @@ parser = argparse.ArgumentParser(description="PyTorch ASR Video Segment MIL-NCE"
 parser.add_argument(
     "--video_feats_dir",
     "-video_feats_dir",
-    default="/home/medhini/video_summarization/task_video_sum/datasets/wikihowto_milnce_feats_32/video/embedding",
+    default="./datasets/wikihowto_milnce_feats_32/video/embedding",
     type=str,
     help="Path to video dataset",
 )
 parser.add_argument(
     "--video_dir",
     "-video_dir",
-    default="/home/medhini/video_summarization/task_video_sum/datasets/wikihowto_val",
+    default="./datasets/wikihowto_val",
     type=str,
     help="Path to video dataset",
 )
 parser.add_argument(
     "--video_frames_dir",
     "-video_frames_dir",
-    default="/home/medhini/video_summarization/task_video_sum/datasets/wikihow_frames",
+    default="./wikihow_frames",
     type=str,
     help="Path to video frames",
 )
 parser.add_argument(
     "--annt_dir",
     "-annt_dir",
-    default="/home/medhini/video_summarization/task_video_sum/datasets/wikihowto_annt.json",
+    default="./datasets/wikihowto_annt.json",
     type=str,
     help="Path to video dataset",
 )
 parser.add_argument(
     "--checkpoint_dir",
     type=str,
-    default="/shared/medhini/instructional_vsum/milnce/exp_model_pretrainmilnce_trans_bs_1_lr_0.001_nframes_832_nfps_32/epoch0005.pth.tar",
+    default="./exp_model_pretrainmilnce_trans_bs_1_lr_0.001_nframes_832_nfps_32/epoch0005.pth.tar",
     help="checkpoint model folder",
 )
 parser.add_argument(
@@ -72,7 +72,7 @@ parser.add_argument(
 parser.add_argument(
     "-out_dir",
     "--out_dir",
-    default="/home/medhini/video_summarization/task_video_sum/gen_summaries_milnce_wikihowto",
+    default="./gen_summaries_milnce_wikihowto",
     type=str,
     help="folder for result videos",
 )
@@ -80,7 +80,7 @@ parser.add_argument("--word2vec_path", type=str, default="data/word2vec.pth", he
 parser.add_argument(
     "--pretrain_cnn_path",
     type=str,
-    default="/home/medhini/video_summarization/task_video_sum/pretrained_weights/s3d_howto100m.pth",
+    default="./pretrained_weights/s3d_howto100m.pth",
     help="",
 )
 

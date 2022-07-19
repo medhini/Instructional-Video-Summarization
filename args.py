@@ -9,34 +9,32 @@ def get_args(description="MILNCE"):
     parser.add_argument(
         "--video_root",
         type=str,
-        default="/shared/medhini/pseudoGT_videos",
+        default="./datasets/pseudoGT_videos",
         help="video_root",
     )
     parser.add_argument(
         "--eval_video_root",
         type=str,
-        default="/home/medhini/video_summarization/task_video_sum/datasets/wikihowto_val",
-        # default="/shared/medhini/pseudoGT_videos",
+        default="./datasets/wikihowto_val",
         help="root folder for the video at for evaluation",
     )
 
     parser.add_argument(
         "--annt_path",
         type=str,
-        default="/home/medhini/video_summarization/task_video_sum/datasets/pseudoGT_annt.json",
+        default="./datasets/pseudoGT_summ_annts.json",
         help="video_path",
     )
     parser.add_argument(
         "--eval_annt_path",
         type=str,
-        default="/home/medhini/video_summarization/task_video_sum/datasets/wikihowto_annt.json",
-        # default="/home/medhini/video_summarization/task_video_sum/datasets/pseudoGT_annt.json",
+        default="./datasets/wikihowto_annt.json",
         help="video_path",
     )
     parser.add_argument(
         "--video_feats_dir",
         "-video_feats_dir",
-        default="/home/medhini/video_summarization/task_video_sum/datasets/wikihowto_milnce_feats_32/video/embedding",
+        default="./datasets/wikihowto_milnce_feats_32/video/embedding",
         type=str,
         help="Path to video dataset",
     )
