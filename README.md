@@ -43,7 +43,7 @@ The WikiHow summary annotations are found in ``datasets/wikihow_summ_annt.json``
 
 ### Pseudo Summaries Training Dataset
 
-We use videos from [COIN](https://coin-dataset.github.io/) and [CrossTask](https://github.com/DmZhukov/CrossTask) to create the Pseudo Summaries Training Dataset. Please follow the instructions on the original websites to download the videos (at 8 fps) and the corresponding subtitles. For COIN, we use yt-dlp to download subtitles. We combined the two datasets to create pseudo summaries comprising of 12,160 videos, whilst using the videos that were common to both datasets only once. We provide YouTube video IDs of the 12160 videos in ``datasets/pseudo_summary_video_ids.txt``. 
+We use videos from [COIN](https://coin-dataset.github.io/) and [CrossTask](https://github.com/DmZhukov/CrossTask) to create the Pseudo Summaries Training Dataset. Please follow the instructions on the original websites to download the videos (at 8 fps) and the corresponding subtitles (in .txt format). For COIN, we use yt-dlp to download subtitles. We combined the two datasets to create pseudo summaries comprising of 12,160 videos, whilst using the videos that were common to both datasets only once. We provide YouTube video IDs of the 12160 videos in ``datasets/pseudo_summary_video_ids.txt``. 
 
 Place the videos and ASR in datasets/pseudoGT_videos and datasets/pseudoGT_asr. We also use the task annotations from both the datasets, which we  
 
@@ -55,9 +55,9 @@ The next steps in this section describe how we generated these summaries, and ne
 
 ### MIL-NCE Feature Extraction (optional)
 
-Our Pseudo GT Summary Generation Algorithm uses MIL-NCE features. Our scripts for extracting features are based on this [code](https://github.com/antoine77340/S3D_HowTo100M). Follow the instructions [here](https://github.com/antoine77340/S3D_HowTo100M#getting-the-data) to download the weights and word dictionary and place them in ``feature_extraction``.
+Our Pseudo GT Summary Generation Algorithm uses MIL-NCE features. Our scripts for extracting features are based on this [code](https://github.com/antoine77340/S3D_HowTo100M). Follow the instructions [here](https://github.com/antoine77340/S3D_HowTo100M#getting-the-data) to download the weights and word dictionary and place them in ``~/Instructional-Video-Summarization/pretrained_weights``.
 
-Run the following to extract features,
+Run the following to extract features. The script uses a single GPU.  
 
 ```
 cd feature_extraction
@@ -76,4 +76,8 @@ python pseudo_gt_generation.py
 ## IV-Sum Training and Evaluation
 
 
+## Coming soon
 
+Baselines
+
+Model Checkpoints
