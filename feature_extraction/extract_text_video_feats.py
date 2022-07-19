@@ -9,7 +9,7 @@ import math
 from s3dg import S3D
 from data import MIL_NCE_Extract_Feats
 
-parser = argparse.ArgumentParser(description="PyTorch Video Textures")
+parser = argparse.ArgumentParser(description="MIL-NCE Feature Extraction")
 parser.add_argument(
     "--window", "-w", default=1, type=int, help="Size of temporal window in seconds"
 )
@@ -24,7 +24,7 @@ parser.add_argument(
 parser.add_argument(
     "--vdata",
     "-vdata",
-    default="/home/medhini/video_summarization/task_video_sum/datasets/pseudoGT_videos",
+    default="../datasets/pseudoGT_videos",
     type=str,
     help="Path to video dataset",
 )
@@ -32,7 +32,7 @@ parser.add_argument(
 parser.add_argument(
     "--asr_path",
     "-asr_dir",
-    default="/home/medhini/video_summarization/task_video_sum/datasets/pseudoGT_asr",
+    default="../datasets/pseudoGT_asr",
     type=str,
     help="Path to asr",
 )
@@ -40,7 +40,7 @@ parser.add_argument(
 parser.add_argument(
     "-rf",
     "--results_folder",
-    default="/home/medhini/video_summarization/task_video_sum/datasets/pseudoGT_milnce_feats_8fps",
+    default="../datasets/pseudoGT_milnce_feats_8fps",
     type=str,
     help="folder for result videos",
 )
@@ -60,7 +60,6 @@ parser.add_argument(
     type=str,
     help="Dataset name",
 )
-
 
 def to_cuda(item):
     if isinstance(item[0], list):
@@ -84,18 +83,15 @@ def main(args):
     )
 
     # Instantiate the model
-    net = S3D("s3d_dict.npy", 512)
+    net = S3D("../pretrained_weights/s3d_dict.npy", 512)
 
     # Load the model weights
-    net.load_state_dict(torch.load("s3d_howto100m.pth"))
+    net.load_state_dict(torch.load("../pretrained_weights/s3d_howto100m.pth"))
     net = torch.nn.DataParallel(net).cuda()
     cudnn.benchmark = True
 
     # Evaluation mode
     net = net.eval()
-
-    # Video input should be of size Batch x 3 x T x H x W and normalized to [0, 1]
-    # video = torch.rand(2, 3, 32, 224, 224)
 
     # Create results folders
     os.makedirs(os.path.join(args.results_folder, "video", "embedding"), exist_ok=True)
@@ -142,15 +138,6 @@ def main(args):
             )
 
             print("Saved feats for: ", video_name[0])
-
-    # Instantiate the model
-    net = S3D("s3d_dict.npy", 512)
-
-    # Load the model weights
-    net.load_state_dict(torch.load("s3d_howto100m.pth"))
-
-    # Evaluation mode
-    net = net.eval()
 
     asr_files = os.listdir(args.asr_path)
     with torch.no_grad():

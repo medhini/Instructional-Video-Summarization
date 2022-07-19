@@ -16,28 +16,28 @@ parser = argparse.ArgumentParser(description="PyTorch ASR Video Segment MIL-NCE"
 parser.add_argument(
     "--video_feats_dir",
     "-video_feats_dir",
-    default="/home/medhini/video_summarization/task_video_sum/datasets/pseudoGT_milnce_feats_8fps/video/embedding",
+    default="./datasets/pseudoGT_milnce_feats_8fps/video/embedding",
     type=str,
     help="Path to video features",
 )
 parser.add_argument(
     "--video_dir",
     "-video_dir",
-    default="/home/medhini/video_summarization/task_video_sum/datasets/pseudoGT_videos",
+    default="./datasets/pseudoGT_videos",
     type=str,
     help="Path to video dataset",
 )
 parser.add_argument(
     "--asr_feats_dir",
     "-asr_feats_dir",
-    default="/home/medhini/video_summarization/task_video_sum/datasets/pseudoGT_milnce_feats_8fps/asr",
+    default="./datasets/pseudoGT_milnce_feats_8fps/asr",
     type=str,
     help="Path to asr features",
 )
 parser.add_argument(
     "--annt_dir",
     "-annt_dir",
-    default="/home/medhini/video_summarization/task_video_sum/datasets/pseudoGT_task_annts.json",
+    default="./datasets/pseudoGT_task_annts.json",
     type=str,
     help="Path to pseudoGT task annotations",
 )
@@ -52,7 +52,7 @@ parser.add_argument(
 parser.add_argument(
     "-out_dir",
     "--out_dir",
-    default="/home/medhini/video_summarization/task_video_sum/datasets/pseudogt_gen_summaries",
+    default="./datasets/pseudogt_gen_summaries",
     type=str,
     help="folder for result videos",
 )

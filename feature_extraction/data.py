@@ -30,22 +30,22 @@ class MIL_NCE_Extract_Feats(Dataset):
             for file in all_vid_files:
                 if file.split(".")[0] + ".en.txt" in self.asr_files:
                     self.vid_files.append(file)
-
-        elif self.dataset == "crosstask":
+        else:
             self.vid_files = sorted(os.listdir(self.v_path))
             # skip done, errors
-            done = os.listdir(
-                "/home/medhini/video_summarization/task_video_sum/datasets/pseudoGT_milnce_feats_8fps/video/embedding".format(
-                    self.dataset
+            if os.path.exists("../datasets/pseudoGT_milnce_feats_8fps/video/embedding"):
+                done = os.listdir(
+                    "../datasets/pseudoGT_milnce_feats_8fps/video/embedding".format(
+                        self.dataset
+                    )
                 )
-            )
-            for f in done:
-                if f.split(".")[0] + ".mp4" in self.vid_files:
-                    self.vid_files.remove(f.split(".")[0] + ".mp4")
-                if f.split(".")[0] + ".mkv" in self.vid_files:
-                    self.vid_files.remove(f.split(".")[0] + ".mkv")
-                if f.split(".")[0] + ".webm" in self.vid_files:
-                    self.vid_files.remove(f.split(".")[0] + ".webm")
+                for f in done:
+                    if f.split(".")[0] + ".mp4" in self.vid_files:
+                        self.vid_files.remove(f.split(".")[0] + ".mp4")
+                    if f.split(".")[0] + ".mkv" in self.vid_files:
+                        self.vid_files.remove(f.split(".")[0] + ".mkv")
+                    if f.split(".")[0] + ".webm" in self.vid_files:
+                        self.vid_files.remove(f.split(".")[0] + ".webm")
 
         self.transform = transforms.Resize((224, 224))
 
