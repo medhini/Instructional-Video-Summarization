@@ -75,7 +75,17 @@ python pseudo_gt_generation.py
 
 ## IV-Sum Training and Evaluation
 
+To train and evaluate IVSum on the Pseudo GT Summary Dataset, run
 
+```
+python -m torch.distributed.launch --nproc_per_node=8 main_distributed.py
+```
+
+To test IVSum on the WikiHow Summaries Dataset, run
+
+```
+python test.py
+```
 ## Coming soon
 
 Baselines
