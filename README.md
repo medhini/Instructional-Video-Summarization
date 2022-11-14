@@ -5,11 +5,13 @@ In this repository we provide the datasets, code for pseudo ground-truth summary
 If you find our repo useful in your research, please use the following BibTeX entry for citation.
 
 ```BibTeX
-@article{narasimhan2022tl,
-  title={TL; DW? Summarizing Instructional Videos with Task Relevance \& Cross-Modal Saliency},
+@inproceedings{narasimhan2022tl,
+  title={TL; DW? Summarizing Instructional Videos with Task Relevance and Cross-Modal Saliency},
   author={Narasimhan, Medhini and Nagrani, Arsha and Sun, Chen and Rubinstein, Michael and Darrell, Trevor and Rohrbach, Anna and Schmid, Cordelia},
-  journal={arXiv preprint arXiv:2208.06773},
-  year={2022}
+  booktitle={European Conference on Computer Vision},
+  pages={540--557},
+  year={2022},
+  organization={Springer}
 }
 ```
 
