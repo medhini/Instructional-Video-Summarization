@@ -207,12 +207,7 @@ def main_worker(gpu, ngpus_per_node, args):
         os.makedirs(tb_logdir, exist_ok=True)
 
     # define loss function (criterion) and optimizer
-    # criterion = MILNCELoss()
-    # criterion_c = nn.CrossEntropyLoss(
-    #     weight=train_dataset.ce_weight.cuda(args.gpu), reduction="none"
-    # )
     criterion_c = nn.MSELoss(reduction="none")
-    # criterion_c = nn.CrossEntropyLoss(weight=None)
     criterion_r = nn.MSELoss()
     criterion_d = nn.CosineSimilarity(dim=1, eps=1e-6)
 
@@ -260,9 +255,6 @@ def main_worker(gpu, ngpus_per_node, args):
                 weight_decay=args.weight_decay,
             )
 
-    # scheduler = get_cosine_schedule_with_warmup(
-    #     optimizer, args.warmup_steps, len(train_loader) * args.epochs
-    # )
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=300, gamma=1.0)
     checkpoint_dir = os.path.join(
         os.path.dirname(__file__), args.checkpoint_dir, args.log_name
@@ -405,8 +397,7 @@ def TrainOneBatch(model, opt, scheduler, data, loss_fun, args, epoch):
         #     summary_frames[summary_frames < threshold] = 0
         #     summary_frames[summary_frames > threshold] = 1
         # print("Gen {}, Labels {} :".format(summary_frames, label))
-    # loss = loss / (int(args.num_frames / args.num_frames_per_segment))
-    # loss.backward()
+        
     # Since loss is a non-scalar, provide gradient as tensor of 1s
     gradient = torch.ones((loss.shape[0]), dtype=torch.long).cuda(
         args.gpu, non_blocking=args.pin_memory
@@ -447,10 +438,6 @@ def evaluate(test_loader, model, epoch, tb_logger, loss_fun, args, dataset_name)
 
             if args.rank == 0:
                 loss = loss_fun(score.view(-1), label_scores)
-                # summary_frames = torch.argmax(score.data, 1)
-
-                # score = nn.functional.log_softmax(score.view(-1).detach().cpu(), dim=0)
-                # score = nn.functional.normalize(score.view(-1).detach().cpu(), dim=0)
                 summary_ids = (
                     score.detach().cpu().view(-1).topk(int(0.50 * len(label)))[1]
                 )
@@ -460,17 +447,6 @@ def evaluate(test_loader, model, epoch, tb_logger, loss_fun, args, dataset_name)
                 # print("Thershold: ", threshold)
                 # summary_frames[summary_frames < threshold] = 0
                 # summary_frames[summary_frames > threshold] = 1
-
-                # print(
-                #     "Summary frames: ",
-                #     summary,
-                #     "Labels: ",
-                #     label,
-                #     "Scores: ",
-                #     score.view(-1),
-                #     "Label scores: ",
-                #     label_scores,
-                # )
 
                 f_score, precision, recall = evaluate_summary(
                     summary, label.detach().cpu().numpy()
@@ -547,22 +523,6 @@ def log(output, args):
         "a",
     ) as f:
         f.write(output + "\n")
-
-
-# gcn_params = []
-# base_params = []
-# for name, param in model.named_parameters():
-#     if 'ga' in name or 'gcn' in name:
-#         gcn_params.append(param)
-#     else:
-#         base_params.append(param)
-
-# optimizer = optim.Adam([
-#     {"params": base_params, "lr": args.learning_rate_lstm},
-#     {"params": gcn_params, "lr":args.learning_rate_gcn},
-# ], weight_decay=1e-6)
-# scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=40, gamma=0.4)
-
 
 if __name__ == "__main__":
     main()
