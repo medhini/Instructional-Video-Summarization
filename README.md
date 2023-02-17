@@ -47,7 +47,7 @@ The WikiHow summary annotations are found in ``datasets/wikihow_summ_annt.json``
 
 We use videos from [COIN](https://coin-dataset.github.io/) and [CrossTask](https://github.com/DmZhukov/CrossTask) to create the Pseudo Summaries Training Dataset. Please follow the instructions on the original websites to download the videos (at 8 fps) and the corresponding subtitles (in .txt format). For COIN, we use yt-dlp to download subtitles. We combined the two datasets to create pseudo summaries comprising of 12,160 videos, whilst using the videos that were common to both datasets only once. We provide YouTube video IDs of the 12160 videos in ``datasets/pseudo_summary_video_ids.txt``. 
 
-Place the videos and ASR in datasets/pseudoGT_videos and datasets/pseudoGT_asr. We also use the task annotations from both the datasets, which we  
+Place the videos and ASR in datasets/pseudoGT_videos and datasets/pseudoGT_asr. We also use the task annotations from both the datasets.  
 
 ## Pseudo Ground-Truth Summary Generation
 
